@@ -1,0 +1,40 @@
+# config.yaml — SoundCheck configuration
+# Edit before first run. Both Pi A and Pi B read this file.
+
+# ── Flask ─────────────────────────────────────────────────────────────────────
+secret_key: "change-me-to-a-random-string-before-deploying"
+
+# ── MQTT ──────────────────────────────────────────────────────────────────────
+mqtt:
+  broker_host: "192.168.1.100"    # ← Change to Pi B's IP address
+  broker_port: 1883
+
+# ── Audio ─────────────────────────────────────────────────────────────────────
+audio:
+  sample_rate: 16000              # Hz — 16 kHz is more than sufficient
+  channels: 1                     # mono
+  warmup_seconds: 1               # discard first N seconds (USB init artifacts)
+  max_duration_seconds: 65        # safety cap on Pi A recording length
+
+# ── Database ──────────────────────────────────────────────────────────────────
+database:
+  path: "soundcheck.db"           # relative to app.py location
+  history_limit: 20               # rows returned by /api/history
+
+# ── Alerting thresholds ───────────────────────────────────────────────────────
+# These are coherence-derived leakage dB values (NOT absolute SPL dB).
+# Run calibration.py first, then update these values.
+#
+# Traffic-light logic:
+#   overall_leakage_db > red_threshold  → red   (too loud)
+#   overall_leakage_db > amber_threshold → amber (borderline)
+#   otherwise                           → green (safe)
+thresholds:
+  red_db: -25.0
+  amber_db: -40.0
+
+# ── ntfy.sh push notifications ────────────────────────────────────────────────
+ntfy:
+  enabled: true
+  topic: "soundcheck-CHANGEME"    # ← Pick a unique private topic name
+  # Free tier: 250 msgs/day — more than enough for on-demand checks

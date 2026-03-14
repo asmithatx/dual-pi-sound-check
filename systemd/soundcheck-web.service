@@ -1,0 +1,27 @@
+[Unit]
+Description=SoundCheck Web Server (Pi B)
+Documentation=https://github.com/YOUR_USERNAME/soundcheck
+After=network-online.target mosquitto.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/soundcheck
+ExecStart=/home/pi/soundcheck/venv/bin/python app.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=soundcheck-web
+
+# Prevent runaway resource use
+MemoryMax=512M
+CPUQuota=80%
+
+# Environment
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

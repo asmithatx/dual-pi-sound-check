@@ -1,0 +1,12 @@
+# requirements-pia.txt — Pi A (bedroom / listener only)
+# pip install -r requirements-pia.txt
+
+# MQTT client
+paho-mqtt>=2.0.0
+
+# Audio recording
+sounddevice>=0.4.6
+numpy>=1.26.0
+
+# Config
+pyyaml>=6.0.1

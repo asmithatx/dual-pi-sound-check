@@ -1,0 +1,21 @@
+# requirements-pib.txt — Pi B (living room / web server)
+# pip install -r requirements-pib.txt
+
+# Web server
+flask>=3.0.0
+flask-socketio>=5.3.6
+eventlet>=0.35.1
+
+# MQTT client
+paho-mqtt>=2.0.0
+
+# Signal processing
+numpy>=1.26.0
+scipy>=1.12.0
+
+# Audio recording
+sounddevice>=0.4.6
+
+# Config & utilities
+pyyaml>=6.0.1
+requests>=2.31.0

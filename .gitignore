@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Database (contains your check history — exclude from repo)
+*.db
+*.sqlite3
+
+# Config with secrets (keep config.yaml.example, not the real one)
+# Uncomment the next line if your config.yaml contains real API keys/topics:
+# config.yaml
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Raspberry Pi / Linux
+*.sock
